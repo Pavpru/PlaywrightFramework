@@ -17,6 +17,7 @@ class LoginPage {
     await expect(this.emailID).toHaveValue(username);
     await this.password.fill(password);
     await this.loginBtn.click();
+    await expect(this.page).toHaveURL(/dashboard/);
   }
 }
 

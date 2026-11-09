@@ -19,7 +19,7 @@ module.exports = defineConfig({
     timeout: 5000
   },
 
-  
+  reporter:[['html'],['allure-playwright']],
   use: {
     browserName: 'chromium',
     headless: false,
