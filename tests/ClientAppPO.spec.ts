@@ -1,16 +1,18 @@
- const {test, expect} = require('@playwright/test');
- const {POManager} = require('../pageobjects/POManager');
- const datset = JSON.parse(JSON.stringify(require('../utils/placeHolderTestData.json')))
-
+//  const {test, expect} = require('@playwright/test');
+//  const {POManager} = require('../pageobjects/POManager');
+//  const datset = JSON.parse(JSON.stringify(require('../utils/placeHolderTestData.json')))
+import {test , expect} from '@playwright/test'
+import {POManager} from '../pageobjects/POManager'
+import datset from '../utils/placeHolderTestData.json'
 for(const data of datset){
- test.only(`Client App login ${data.ProductName} `, async ({page})=>
+ test(`Client App login ${data.ProductName} `, async ({page})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage
      const username = data.username;
      const password = data.password;
      const productName = data.ProductName;
-     const loginPage = poManager.getLoginage();
+     const loginPage = poManager.getLoginPage();
      await loginPage.goTo();
      await loginPage.validLogin(username,password);
      const dashboardPage = poManager.getDashboardPage();

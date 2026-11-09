@@ -1,8 +1,15 @@
-const { expect } = require("@playwright/test");
-
-class OrdersReviewPage
+// const { expect } = require("@playwright/test");
+import {Page , Locator , expect } from '@playwright/test'
+export class OrdersReviewPage
 {
-constructor(page)
+    readonly page: Page;
+  readonly country: Locator;
+  readonly dropdown: Locator;
+  readonly emailId: Locator;
+  readonly submit: Locator;
+  readonly orderConfirmationText: Locator;
+  readonly orderId: Locator;
+constructor(page:Page)
 {
     this.page = page;
 this.country = page.locator("[placeholder*='Country']");
@@ -13,7 +20,7 @@ this.orderConfirmationText = page.locator(".hero-primary");
 this.orderId = page.locator(".em-spacer-1 .ng-star-inserted");
 
 }
-async searchCountryAndSelect(countryCode,countryName)
+async searchCountryAndSelect(countryCode:any,countryName:any)
 {
 
     await this.country.type(countryCode,{delay:100});
@@ -31,7 +38,7 @@ async searchCountryAndSelect(countryCode,countryName)
     throw new Error(`Country "${countryName}" was not found in the suggestions`);
 }
 
-async VerifyEmailId(username)
+async VerifyEmailId(username:string)
 {
     await expect(this.emailId).toHaveText(username);
 }
@@ -43,5 +50,5 @@ async SubmitAndGetOrderId()
  return await this.orderId.textContent();
 }
 }
-module.exports = {OrdersReviewPage};
+// module.exports = {OrdersReviewPage};
    

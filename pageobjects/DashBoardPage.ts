@@ -1,8 +1,14 @@
-const { expect } = require('@playwright/test');
+//const { expect } = require('@playwright/test');
+import {expect,Page,Locator} from '@playwright/test'
 
-class DashBoardPage{
+export class DashBoardPage{
 
-    constructor(page){
+    page :Page;
+    products :Locator;
+    productstext:Locator;
+    cart:Locator;
+    orders:Locator;
+    constructor(page:Page){
         this.page = page;
         this.products= page.locator('.card-body');
         this.productstext= page.locator('.card-body b');
@@ -10,7 +16,7 @@ class DashBoardPage{
         this.orders = page.locator("button[routerlink*='myorders']");
     }
 
-    async searchProductAddCart(productName){
+    async searchProductAddCart(productName:string){
         await expect(this.products.first()).toBeVisible();
         const productNames = await this.productstext.allTextContents();
         const productIndex = productNames.findIndex(name => name.trim() === productName);
@@ -33,4 +39,4 @@ class DashBoardPage{
     }
 }
 
-module.exports = {DashBoardPage};
+//module.exports = {DashBoardPage};

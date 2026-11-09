@@ -1,7 +1,11 @@
-const { expect } = require('@playwright/test');
-
-class LoginPage {
-  constructor(page) {
+// const { expect } = require('@playwright/test');
+import {Page,Locator,expect} from '@playwright/test'
+export class LoginPage {
+      page :Page;
+      emailID :Locator;
+      password:Locator;
+       loginBtn:Locator;
+  constructor(page:Page) {
     this.page = page;
     this.emailID = page.locator('#userEmail');
     this.password = page.locator('#userPassword');
@@ -12,7 +16,7 @@ class LoginPage {
     await this.page.goto('https://rahulshettyacademy.com/client/#/auth/login');
   }
 
-  async validLogin(username, password) {
+  async validLogin(username:string, password:string) {
     await this.emailID.fill(username);
     await expect(this.emailID).toHaveValue(username);
     await this.password.fill(password);
@@ -21,4 +25,4 @@ class LoginPage {
   }
 }
 
-module.exports = { LoginPage };
+//module.exports = { LoginPage };
