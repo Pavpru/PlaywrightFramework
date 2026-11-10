@@ -10,7 +10,7 @@ for(const data of datset){
      const username = data.username;
      const password = data.password;
      const productName = data.ProductName;
-     const loginPage = poManager.getLoginage();
+     const loginPage = poManager.getLoginPage();
      await loginPage.goTo();
      await loginPage.validLogin(username,password);
      const dashboardPage = poManager.getDashboardPage();
